@@ -750,6 +750,11 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
 
     def quit(self):
         try:
+            super().quit()
+        except Exception:
+            pass
+
+        try:
             self.service.process.kill()
             logger.debug("webdriver process ended")
         except (AttributeError, RuntimeError, OSError):
